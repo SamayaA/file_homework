@@ -29,8 +29,30 @@ def get_shop_list_by_dishes(dishes, person_count):
       else :
         ingredients[ingredient_name]['quantity'] += dish_ingredients[j]['quantity'] * person_count
   return ingredients
-    
-pprint(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2))
 
+# pprint(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2))
+
+# Task 3
 os.chdir('files_to_read/')
 files_to_write = os.listdir()
+
+files = dict()
+count_str = list()
+for file_name in files_to_write :
+    with open(file_name , "r" , encoding="UTF8") as file :
+        files[file_name] = list()
+        files[file_name] = file.readlines()
+        str_quantity = len(files[file_name])
+        count_str.append(str_quantity)
+        files[file_name].insert(0 , str(str_quantity)+'\n')
+count_str.sort()
+
+os.chdir('..')
+
+with open ("result.txt" , "w" , encoding="UTF8") as result :
+    for quantity_str in count_str :
+        for name in files :
+            if (files[name][0] == str(quantity_str)+'\n') :
+                result.write(name+'\n')
+                result.writelines(files[name])
+        result.write('\n')
