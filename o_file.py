@@ -30,3 +30,7 @@ def get_shop_list_by_dishes(dishes, person_count):
         ingredients[ingredient_name]['quantity'] += dish_ingredients[j]['quantity'] * person_count
   return ingredients
     
+pprint(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2))
+
+os.chdir('files_to_read/')
+files_to_write = os.listdir()
